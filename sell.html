@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Cattle - Gavseva</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Toolbar -->
+    <header class="toolbar">
+        <div class="logo">GauSeva</div>
+        <nav>
+            <a href="index.html" class="home-link">Home</a>
+            <div class="search-container">
+                <input type="text" placeholder="Search cattle..." class="search-bar">
+                <span class="search-icon">🔍</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sell Content -->
+    <main class="sell-content">
+        <h1>List Your Cattle</h1>
+        <div class="sell-form">
+            <div class="photo-upload">
+                <img src="https://via.placeholder.com/200" alt="Upload  Photo" id="photo-preview" class="cattle-photo">
+                <br> 
+                <button>Click the photo to upload</button>
+            </div>
+            <input type="file" id="photo-input" accept="image/*" style="display: none;">
+            <input type="text" placeholder="Cattle Breed" class="form-input">
+            <input type="number" placeholder="Price (₹)" class="form-input">
+            <input type="text" placeholder="Your Address" class="form-input">
+            <input type="number" placeholder="Milk Capacity (L/day)" class="form-input">
+            <input type="tel" placeholder="Your Contact Number" class="form-input">
+            <button class="btn submit-btn">Submit Listing</button>
+        </div>
+
+        <!-- Popup -->
+        <div class="popup" id="photo-popup">
+            <div class="popup-content">
+                <h2>Upload Cattle Photo</h2>
+                <p>Please upload a clear photo of your cattle.</p>
+                <input type="file" id="popup-photo-input" accept="image/*">
+                <button class="btn close-btn" id="close-popup">Close</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Popup functionality
+        const photoPreview = document.getElementById('photo-preview');
+        const photoInput = document.getElementById('photo-input');
+        const popup = document.getElementById('photo-popup');
+        const closePopup = document.getElementById('close-popup');
+        const popupPhotoInput = document.getElementById('popup-photo-input');
+
+        photoPreview.addEventListener('click', () => {
+            popup.style.display = 'flex';
+        });
+
+        closePopup.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        popupPhotoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    photoPreview.src = reader.result;
+                };
+                reader.readAsDataURL(file);
+            }
+            popup.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
